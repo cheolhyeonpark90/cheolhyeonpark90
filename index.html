@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박철현 | 백엔드 개발자 포트폴리오</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Manrope:wght@700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background-color: #0B0F19;
+            /* 새 배경색 */
+            color: #E5E7EB;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body.modal-active {
+            overflow: hidden;
+        }
+
+        .font-manrope {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #34D399, #60A5FA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-bg {
+            background-image: radial-gradient(circle at 20% 80%, rgba(52, 211, 153, 0.1), transparent 35%),
+                radial-gradient(circle at 80% 30%, rgba(96, 165, 250, 0.1), transparent 35%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .tag {
+            background-color: rgba(52, 211, 153, 0.1);
+            color: #34D399;
+            border: 1px solid rgba(52, 211, 153, 0.2);
+            font-size: 0.8rem;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.7s ease-in-out;
+        }
+
+        .accordion-button.active+.accordion-content {
+            max-height: 1500px;
+        }
+
+        .accordion-button .icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-button.active .icon {
+            transform: rotate(180deg);
+        }
+
+        .modal {
+            transition: opacity 0.25s ease;
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header class="bg-black/30 backdrop-blur-lg sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#hero" class="text-xl font-bold font-manrope text-white">박철현 포트폴리오</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#about" class="text-gray-300 hover:text-white transition-colors">소개</a>
+                <a href="#skills" class="text-gray-300 hover:text-white transition-colors">보유 기술</a>
+                <a href="#projects" class="text-gray-300 hover:text-white transition-colors">프로젝트</a>
+                <a href="#stories" class="text-gray-300 hover:text-white transition-colors">성장 기록</a>
+                <a href="#contact"
+                    class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg transition-colors">연락처</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#about" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">소개</a>
+            <a href="#skills" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">보유 기술</a>
+            <a href="#projects" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">프로젝트</a>
+            <a href="#stories" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">성장 기록</a>
+            <a href="#contact" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-700">연락처</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center justify-center hero-bg">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-5xl md:text-7xl font-extrabold font-manrope text-white leading-tight">
+                    안정적인 시스템 위에<br>
+                    <span class="gradient-text">지속 가능한 가치를 만듭니다</span>
+                </h1>
+                <p class="mt-6 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
+                    지난 5년 8개월간 현업에서 마주한 문제와 성장의 기록입니다. 다양한 환경에서의 경험을 통해, 기술의 유행과 안정적인 기반 사이의 균형을 배웠습니다.
+                </p>
+                <div class="mt-10 flex justify-center items-center space-x-6">
+                    <a href="https://github.com/cheolhyeonpark90" target="_blank"
+                        class="text-gray-400 hover:text-white transition-all transform hover:scale-110"
+                        aria-label="GitHub"><i class="fab fa-github fa-2x"></i></a>
+                    <a href="https://webfirewood.tistory.com/" target="_blank"
+                        class="text-gray-400 hover:text-white transition-all transform hover:scale-110"
+                        aria-label="Blog"><i class="fas fa-blog fa-2x"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="scroll-reveal text-center max-w-6xl mx-auto">
+                    <h2 class="text-4xl font-bold font-manrope gradient-text mb-6">일하는 방식</h2>
+                    <p class="text-xl text-gray-300 mb-12 max-w-4xl mx-auto">
+                        하나의 기능이 사용자에게 전달되기까지 거치는 수많은 기술적 선택과 그 이면에 담긴 고민의 깊이가 좋은 시스템을 만든다고 믿습니다.
+                        단순히 유행을 따르기보다, 견고하고 이해하기 쉬운 코드를 통해 동료에게 신뢰를 주고 비즈니스에 실질적인 가치를 더하는 방법을 배우고 있습니다.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                        <div class="glass-card rounded-2xl p-8 transition-transform transform hover:-translate-y-2">
+                            <i class="fas fa-balance-scale-right fa-2x text-emerald-400 mb-4"></i>
+                            <h3 class="text-xl font-bold text-white mb-2">기술과 비즈니스의 균형</h3>
+                            <p class="text-gray-400">기술적 이상과 비즈니스 현실 사이의 균형점을 찾습니다. 화려함보다 실용적이고 안정적인 해결책을 제시합니다.</p>
+                        </div>
+                        <div class="glass-card rounded-2xl p-8 transition-transform transform hover:-translate-y-2">
+                            <i class="fas fa-shield-alt fa-2x text-blue-400 mb-4"></i>
+                            <h3 class="text-xl font-bold text-white mb-2">안정성을 향한 집요함</h3>
+                            <p class="text-gray-400">장애는 예방이 최선이라는 믿음으로, 발생 가능한 시나리오를 점검하며 안정적인 서비스 운영의 기반을 다집니다.</p>
+                        </div>
+                        <div class="glass-card rounded-2xl p-8 transition-transform transform hover:-translate-y-2">
+                            <i class="fas fa-book-open fa-2x text-purple-400 mb-4"></i>
+                            <h3 class="text-xl font-bold text-white mb-2">소통의 도구로서의 문서</h3>
+                            <p class="text-gray-400">복잡한 협업일수록 명확한 문서가 가장 강력한 도구임을 믿고, 코드만큼 명료한 문서를 통해 팀의 효율을 높입니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="bg-gray-900/50 py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="scroll-reveal text-center">
+                    <h2 class="text-4xl font-bold font-manrope gradient-text mb-12">보유 기술</h2>
+                    <div class="max-w-5xl mx-auto">
+                        <div class="mb-10">
+                            <h3 class="text-2xl font-bold text-white mb-6">Language & Framework</h3>
+                            <div class="flex flex-wrap justify-center gap-4">
+                                <span class="bg-gray-800 text-gray-300 py-2 px-5 rounded-full font-medium">Java</span>
+                                <span class="bg-gray-800 text-gray-300 py-2 px-5 rounded-full font-medium">Kotlin</span>
+                                <span class="bg-gray-800 text-gray-300 py-2 px-5 rounded-full font-medium">Spring
+                                    Boot</span>
+                                <span class="bg-gray-800 text-gray-300 py-2 px-5 rounded-full font-medium">Spring
+                                    Framework</span>
+                                <span class="bg-gray-800 text-gray-300 py-2 px-5 rounded-full font-medium">JPA</span>
+                                <span
+                                    class="bg-gray-800 text-gray-300 py-2 px-5 rounded-full font-medium">MyBatis</span>
+                            </div>
+                        </div>
+                        <div class="mb-10">
+                            <h3 class="text-2xl font-bold text-white mb-6">Database & Caching</h3>
+                            <div class="flex flex-wrap justify-center gap-4">
+                                <span
+                                    class="bg-gray-800 text-gray-300 py-2 px-5 rounded-full font-medium">PostgreSQL</span>
+                                <span class="bg-gray-800 text-gray-300 py-2 px-5 rounded-full font-medium">MySQL</span>
+                                <span class="bg-gray-800 text-gray-300 py-2 px-5 rounded-full font-medium">Oracle</span>
+                                <span class="bg-gray-800 text-gray-300 py-2 px-5 rounded-full font-medium">Redis</span>
+                                <span
+                                    class="bg-gray-800 text-gray-300 py-2 px-5 rounded-full font-medium">MongoDB</span>
+                                <span
+                                    class="bg-gray-800 text-gray-300 py-2 px-5 rounded-full font-medium">Elasticsearch</span>
+                            </div>
+                        </div>
+                        <div class="mb-10">
+                            <h3 class="text-2xl font-bold text-white mb-6">Infra, DevOps & Messaging</h3>
+                            <div class="flex flex-wrap justify-center gap-4">
+                                <span class="bg-gray-800 text-gray-300 py-2 px-5 rounded-full font-medium">AWS</span>
+                                <span class="bg-gray-800 text-gray-300 py-2 px-5 rounded-full font-medium">Docker</span>
+                                <span
+                                    class="bg-gray-800 text-gray-300 py-2 px-5 rounded-full font-medium">Kubernetes</span>
+                                <span
+                                    class="bg-gray-800 text-gray-300 py-2 px-5 rounded-full font-medium">Jenkins</span>
+                                <span class="bg-gray-800 text-gray-300 py-2 px-5 rounded-full font-medium">Kafka</span>
+                                <span
+                                    class="bg-gray-800 text-gray-300 py-2 px-5 rounded-full font-medium">Grafana</span>
+                                <span class="bg-gray-800 text-gray-300 py-2 px-5 rounded-full font-medium">Kibana</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="scroll-reveal text-center">
+                    <h2 class="text-4xl font-bold font-manrope gradient-text mb-20">주요 프로젝트</h2>
+                </div>
+                <div class="max-w-4xl mx-auto space-y-16">
+
+                    <!-- Project 1: AI Digital Textbook -->
+                    <div class="scroll-reveal glass-card rounded-2xl overflow-hidden">
+                        <div class="p-8">
+                            <div class="mb-4"><span class="tag font-semibold py-1 px-3 rounded-full">Architecture &
+                                    MSA</span></div>
+                            <h3 class="text-3xl font-bold text-white mb-2">AI 디지털 교과서 개발</h3>
+                            <p class="text-md text-gray-400 mb-4">(주)웅진씽크빅 | 2023.11 - 2025.03</p>
+                            <p class="text-gray-300 mb-6">신규 교육 플랫폼의 백엔드 아키텍처 청사진을 그리는 책임을 맡았습니다.</p>
+                            <div class="bg-gray-800/50 rounded-lg p-6 mb-6">
+                                <h4 class="font-semibold text-white mb-3">역할 및 성과</h4>
+                                <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                    <li>핵심 도메인(교과학습, 학습관리)을 식별하고 MSA 구조를 설계하여 서비스 확장성의 기반 마련</li>
+                                    <li>CQRS, Kafka, Redis를 조합한 아키텍처로 대규모 트래픽 환경에서의 성능과 안정성 확보</li>
+                                    <li>후속 사업의 PoC 자료로 채택된 완성도 높은 기술 산출물 작성 및 기술 리더십 발휘</li>
+                                </ul>
+                            </div>
+                            <button
+                                class="modal-trigger font-semibold text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-2"
+                                data-modal="modal-ai">
+                                <span>자세히 보기</span><i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: AutoEntry -->
+                    <div class="scroll-reveal glass-card rounded-2xl overflow-hidden">
+                        <div class="p-8">
+                            <div class="mb-4"><span class="tag font-semibold py-1 px-3 rounded-full">API & Cost
+                                    Reduction</span></div>
+                            <h3 class="text-3xl font-bold text-white mb-2">물류센터 비대면 출입관리 시스템</h3>
+                            <p class="text-md text-gray-400 mb-4">쿠팡(주) | 2020.11 - 2021.02</p>
+                            <p class="text-gray-300 mb-6">수작업으로 진행되던 전국 물류센터의 출입 프로세스를 자동화했습니다.</p>
+                            <div class="bg-gray-800/50 rounded-lg p-6 mb-6">
+                                <h4 class="font-semibold text-white mb-3">역할 및 성과</h4>
+                                <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                    <li>QR 기반 출입 인증 및 1,000+ 키오스크 원격 관리를 위한 백엔드 API 시스템 전체 설계 및 개발</li>
+                                    <li>Redis 캐싱 전략으로 대규모 동시 요청에 대한 응답 시간을 최적화하여 안정적인 서비스 운영</li>
+                                    <li class="font-bold text-emerald-400">연간 10억 원의 인건비 절감 효과를 달성하고, 분기 우수 성과자로 선정</li>
+                                </ul>
+                            </div>
+                            <button
+                                class="modal-trigger font-semibold text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-2"
+                                data-modal="modal-autoentry">
+                                <span>자세히 보기</span><i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: Batch Performance Improvement -->
+                    <div class="scroll-reveal glass-card rounded-2xl overflow-hidden">
+                        <div class="p-8">
+                            <div class="mb-4"><span class="tag font-semibold py-1 px-3 rounded-full">Performance &
+                                    Optimization</span></div>
+                            <h3 class="text-3xl font-bold text-white mb-2">약정 연장 배치 성능 개선</h3>
+                            <p class="text-md text-gray-400 mb-4">(주)웅진씽크빅 | 2023.05</p>
+                            <p class="text-gray-300 mb-6">레거시 시스템의 고질적인 성능 저하 문제를 해결하고 운영 안정성을 되찾았습니다.</p>
+                            <div class="bg-gray-800/50 rounded-lg p-6 mb-6">
+                                <h4 class="font-semibold text-white mb-3">역할 및 성과</h4>
+                                <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                    <li>잘못된 인덱스 구조로 인해 45분 이상 소요되던 레거시 배치의 근본적인 성능 병목 현상 분석</li>
+                                    <li>Fork/Join 병렬 처리 도입과 조회 패턴에 최적화된 복합 인덱스 재설계를 통한 단계적 개선</li>
+                                    <li class="font-bold text-emerald-400">배치 처리 시간을 98% 단축(45분 → 1분 미만)하여 시스템 운영 안정성 및
+                                        효율 극대화</li>
+                                </ul>
+                            </div>
+                            <button
+                                class="modal-trigger font-semibold text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-2"
+                                data-modal="modal-batch">
+                                <span>자세히 보기</span><i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 4: Pad Integration -->
+                    <div class="scroll-reveal glass-card rounded-2xl overflow-hidden">
+                        <div class="p-8">
+                            <div class="mb-4"><span class="tag font-semibold py-1 px-3 rounded-full"
+                                    style="color:#A78BFA; background-color:rgba(167, 139, 250, 0.1); border-color:rgba(167, 139, 250, 0.2);">Refactoring
+                                    & Legacy</span></div>
+                            <h3 class="text-3xl font-bold text-white mb-2">패드 통합 프로젝트</h3>
+                            <p class="text-md text-gray-400 mb-4">(주)웅진씽크빅 | 2022.08 - 2023.07</p>
+                            <p class="text-gray-300 mb-6">1:1 제품-패드 계약 구조를 1:N으로 개편하여 사용자 경험을 개선했습니다.</p>
+                            <div class="bg-gray-800/50 rounded-lg p-6 mb-6">
+                                <h4 class="font-semibold text-white mb-3">역할 및 성과</h4>
+                                <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                    <li>1:N 계약 구조를 지원하도록 시스템을 개편하여, 고질적인 사용자 불편(VOC) 문제 해결</li>
+                                    <li>복잡한 Oracle Procedure를 Java/JPA 기반 로직으로 점진적으로 전환하여 시스템 유지보수성 향상</li>
+                                    <li class="font-bold text-emerald-400">JUnit 테스트 커버리지 20%p 향상 및 배포 후 관련 고객 VOC 10%
+                                        감소 성과 달성</li>
+                                </ul>
+                            </div>
+                            <button
+                                class="modal-trigger font-semibold text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-2"
+                                data-modal="modal-pad">
+                                <span>자세히 보기</span><i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 5: Delivery Tip -->
+                    <div class="scroll-reveal glass-card rounded-2xl overflow-hidden">
+                        <div class="p-8">
+                            <div class="mb-4"><span class="tag font-semibold py-1 px-3 rounded-full">New Feature &
+                                    API</span></div>
+                            <h3 class="text-3xl font-bold text-white mb-2">배송팁 기능 개발</h3>
+                            <p class="text-md text-gray-400 mb-4">쿠팡(주) | 2021.05 - 2021.06</p>
+                            <p class="text-gray-300 mb-6">오배송 감소 및 배송 품질 개선을 위한 배송 담당자 노하우 공유 기능을 개발했습니다.</p>
+                            <div class="bg-gray-800/50 rounded-lg p-6 mb-6">
+                                <h4 class="font-semibold text-white mb-3">역할 및 성과</h4>
+                                <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                    <li>배송 담당자들의 현장 노하우 공유를 위한 RESTful API 및 '좋아요/싫어요' 피드백 기능 구현</li>
+                                    <li>가독성과 유지보수성을 고려한 클린 코드를 작성하여 동료들의 긍정적인 코드 리뷰 피드백 확보</li>
+                                    <li class="font-bold text-emerald-400">서비스 배포 후 시범 지역 오배송률 0% 달성, 배송 품질 및 고객 신뢰도 향상에
+                                        기여</li>
+                                </ul>
+                            </div>
+                            <button
+                                class="modal-trigger font-semibold text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-2"
+                                data-modal="modal-delivery">
+                                <span>자세히 보기</span><i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 6: PII Logging -->
+                    <div class="scroll-reveal glass-card rounded-2xl overflow-hidden">
+                        <div class="p-8">
+                            <div class="mb-4"><span class="tag font-semibold py-1 px-3 rounded-full"
+                                    style="color:#F472B6; background-color:rgba(244, 114, 182, 0.1); border-color:rgba(244, 114, 182, 0.2);">Security
+                                    & AOP</span></div>
+                            <h3 class="text-3xl font-bold text-white mb-2">개인정보 접근 관리자 로깅</h3>
+                            <p class="text-md text-gray-400 mb-4">쿠팡(주) | 2020.06</p>
+                            <p class="text-gray-300 mb-6">보안 및 감사 요구사항 충족을 위한 개인정보 접근 로그 수집 모듈을 개발했습니다.</p>
+                            <div class="bg-gray-800/50 rounded-lg p-6 mb-6">
+                                <h4 class="font-semibold text-white mb-3">역할 및 성과</h4>
+                                <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                    <li>Spring AOP와 Annotation을 활용하여 비즈니스 코드 수정 없이 적용 가능한 로깅 모듈 개발</li>
+                                    <li>동기 방식의 로깅으로 인한 장애 전파 문제를 비동기 방식으로 전환하여 시스템 안정성 확보</li>
+                                    <li>개인정보 접근 기록의 신뢰성과 투명성을 강화하여 보안 감사 요구사항 충족</li>
+                                </ul>
+                            </div>
+                            <button
+                                class="modal-trigger font-semibold text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-2"
+                                data-modal="modal-pii">
+                                <span>자세히 보기</span><i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 7: WeMakePrice Book Search -->
+                    <div class="scroll-reveal glass-card rounded-2xl overflow-hidden">
+                        <div class="p-8">
+                            <div class="mb-4"><span class="tag font-semibold py-1 px-3 rounded-full">Search & API</span>
+                            </div>
+                            <h3 class="text-3xl font-bold text-white mb-2">사내 도서 검색 서비스 개발</h3>
+                            <p class="text-md text-gray-400 mb-4">(주)위메프 | 2019.12 - 2020.03 (인턴)</p>
+                            <p class="text-gray-300 mb-6">사내 개발 도서를 효율적으로 검색하고 관리하는 서비스의 API를 개발했습니다.</p>
+                            <div class="bg-gray-800/50 rounded-lg p-6 mb-6">
+                                <h4 class="font-semibold text-white mb-3">역할 및 성과</h4>
+                                <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                    <li>Elasticsearch를 활용한 검색 API 설계 및 구현으로 인턴 과제 핵심 기술 요건 충족</li>
+                                    <li>팀장으로서 아이디어 조율, 역할 분담, 일정 관리를 주도하며 프로젝트를 성공적으로 완수</li>
+                                    <li class="font-bold text-emerald-400">기술 역량과 리더십을 인정받아 정규직 전환 평가에 최종 합격</li>
+                                </ul>
+                            </div>
+                            <button
+                                class="modal-trigger font-semibold text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-2"
+                                data-modal="modal-book">
+                                <span>자세히 보기</span><i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Project 8: KEVOTE -->
+                    <div class="scroll-reveal glass-card rounded-2xl overflow-hidden">
+                        <div class="p-8">
+                            <div class="mb-4"><span class="tag font-semibold py-1 px-3 rounded-full"
+                                    style="color:#A78BFA; background-color:rgba(167, 139, 250, 0.1); border-color:rgba(167, 139, 250, 0.2);">Full-Stack
+                                    & Refactoring</span></div>
+                            <h3 class="text-3xl font-bold text-white mb-2">전자투표 서비스 개발 및 리팩토링</h3>
+                            <p class="text-md text-gray-400 mb-4">(주)한국전자투표 | 2019.01 - 2019.10</p>
+                            <p class="text-gray-300 mb-6">정당 및 공동주택 선거를 위한 REST API와 Web UI를 풀스택으로 개발했습니다.</p>
+                            <div class="bg-gray-800/50 rounded-lg p-6 mb-6">
+                                <h4 class="font-semibold text-white mb-3">역할 및 성과</h4>
+                                <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                    <li>주요 정당 전당대회 및 8,000세대 이상 대규모 선거 시스템을 풀스택으로 개발하여 안정적으로 지원</li>
+                                    <li>레거시 코드의 복잡도를 낮추고 가독성을 높이는 리팩토링을 주도하여 유지보수 비용 절감</li>
+                                    <li>백엔드와 프론트엔드 개발 경험을 통해 시스템 전반에 대한 깊이 있는 이해도 증진</li>
+                                </ul>
+                            </div>
+                            <button
+                                class="modal-trigger font-semibold text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-2"
+                                data-modal="modal-kevote">
+                                <span>자세히 보기</span><i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- New Side Project: Vibe Coding with AI -->
+                    <div class="scroll-reveal glass-card rounded-2xl overflow-hidden">
+                        <div class="p-8">
+                            <div class="mb-4"><span class="tag font-semibold py-1 px-3 rounded-full"
+                                    style="color:#FBBF24; background-color:rgba(251, 191, 36, 0.1); border-color:rgba(251, 191, 36, 0.2);">AI
+                                    & Rapid Prototyping</span></div>
+                            <h3 class="text-3xl font-bold text-white mb-2">AI와 함께한 사이드 프로젝트: Vibe Coding</h3>
+                            <p class="text-md text-gray-400 mb-4">개인 프로젝트 | 2024</p>
+                            <p class="text-gray-300 mb-6">AI 툴을 적극적으로 활용하여 아이디어 구상부터 배포까지, 10개 이상의 웹 서비스를 단기간에 완성한 개인
+                                프로젝트입니다.
+                            </p>
+                            <div class="bg-gray-800/50 rounded-lg p-6 mb-6">
+                                <h4 class="font-semibold text-white mb-3">역할 및 성과</h4>
+                                <ul class="list-disc list-inside text-gray-300 space-y-2">
+                                    <li>AI를 기획자, 디자이너, 개발자로 활용하여 아이디어를 신속하게 현실화하는 프로세스 정립</li>
+                                    <li>프롬프트 엔지니어링을 통해 AI의 생산성을 극대화하는 경험 및 노하우 축적</li>
+                                    <li>AI 시대의 개발자 역할과 협업 방식에 대한 깊이 있는 고찰 및 미래 기술 변화에 대한 준비</li>
+                                </ul>
+                            </div>
+                            <button
+                                class="modal-trigger font-semibold text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-2"
+                                data-modal="modal-vibe-coding">
+                                <span>자세히 보기</span><i class="fas fa-arrow-right ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Stories Section -->
+        <section id="stories" class="bg-gray-900/50 py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="scroll-reveal text-center max-w-4xl mx-auto">
+                    <h2 class="text-4xl font-bold font-manrope gradient-text mb-12">성장 기록</h2>
+                    <div id="accordion-container" class="space-y-4 text-left">
+                        <div class="glass-card rounded-lg">
+                            <button
+                                class="accordion-button w-full flex justify-between items-center p-6 text-lg font-semibold text-white">
+                                <span>이 일을 하는 이유</span><i class="icon fas fa-chevron-down text-gray-400"></i>
+                            </button>
+                            <div class="accordion-content px-6">
+                                <div class="py-4 text-gray-300 leading-relaxed space-y-4 border-t border-gray-700/50">
+                                    <p>제가 쓴 코드 한 줄이 다른 사람들의 삶에 긍정적인 영향을 줄 수 있다는 사실에 매료되어 개발자의 길을 걷게 되었습니다. 이 생각은 저의 직업적
+                                        정체성의 시작점이자 가장 중요한 원칙이 되었습니다.</p>
+                                    <p>단순히 기능을 만드는 것을 넘어, 제가 참여한 서비스가 사용자의 불편함을 해소하고(패드 통합 프로젝트), 업무 효율을 높이는(배송팁 기능)
+                                        등 실질적인 변화를 만드는 것을 직접 확인할 때 가장 큰 보람과 만족감을 느낍니다.</p>
+                                    <p>앞으로도 제 코드가 닿는 곳에 의미 있는 가치를 더하는 개발자로 성장하고 싶습니다. 그것이 제가 이 일을 계속하는 가장 큰 이유입니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-card rounded-lg">
+                            <button
+                                class="accordion-button w-full flex justify-between items-center p-6 text-lg font-semibold text-white">
+                                <span>성장의 변곡점이 된 도전</span><i class="icon fas fa-chevron-down text-gray-400"></i>
+                            </button>
+                            <div class="accordion-content px-6">
+                                <div class="py-4 text-gray-300 leading-relaxed space-y-4 border-t border-gray-700/50">
+                                    <p><strong class="text-white">AI 디지털 교과서 아키텍처 설계</strong>는 가장 큰 성장의 계기가 되었습니다. 이전까지는
+                                        주로 구축된 시스템을 유지보수하거나 일부 기능을 개선하는 역할을 맡았기에, 백지 위에서 대규모 서비스의 청사진을 그리는 일은 차원이 다른 깊이의
+                                        고민과 기술적 판단을 요구했습니다.</p>
+                                    <p>핵심 과제는 대규모 트래픽과 지속적인 기능 확장을 감당할 수 있는 MSA 경계를 설정하는 것이었습니다. 
+                                        '교과학습', '학습 관리' 등 핵심 도메인을 식별하고 서비스를 분리하여 확장성 높은 구조를 마련했습니다. 또한, CQRS 패턴, Kafka
+                                        기반 비동기 처리, Redis 캐싱을 유기적으로 조합하여 성능과 안정성을 확보했습니다.</p>
+                                    <p>이 프로젝트는 제게 아키텍처 설계란 단순히 기술을 나열하는 것이 아니라, 비즈니스의 본질을 꿰뚫고 미래의 변화까지 예측하여 최적의 균형점을 찾는
+                                        과정임을 가르쳐 주었습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-card rounded-lg">
+                            <button
+                                class="accordion-button w-full flex justify-between items-center p-6 text-lg font-semibold text-white">
+                                <span>지키고자 하는 개발 원칙</span><i class="icon fas fa-chevron-down text-gray-400"></i>
+                            </button>
+                            <div class="accordion-content px-6">
+                                <div class="py-4 text-gray-300 leading-relaxed space-y-4 border-t border-gray-700/50">
+                                    <p>저의 개발 원칙은 <strong class="text-white">'균형', '안정', '소통'</strong> 세 가지입니다.</p>
+                                    <p><strong>균형:</strong> 기술적 이상만을 추구하기보다, 비즈니스 목표와 현실적 제약을 고려해 가장 합리적인 대안을 찾습니다.
+                                    </p>
+                                    <p><strong>안정:</strong> 안정성을 최우선으로, 배포 전 발생 가능한 모든 시나리오를 점검하고 잠재적 위험을 미리 살피는
+                                        꼼꼼함으로 장애를 예방합니다.</p>
+                                    <p><strong>소통:</strong> 좋은 시스템은 결국 사람이 함께 만들기에, 동료와의 신뢰와 소통을 중요하게 생각합니다. 명확한 기술
+                                        문서와 열린 소통으로 원활한 협업을 이끌어갑니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-card rounded-lg">
+                            <button
+                                class="accordion-button w-full flex justify-between items-center p-6 text-lg font-semibold text-white">
+                                <span>협업 경험</span><i class="icon fas fa-chevron-down text-gray-400"></i>
+                            </button>
+                            <div class="accordion-content px-6">
+                                <div class="py-4 text-gray-300 leading-relaxed space-y-4 border-t border-gray-700/50">
+                                    <p>가장 복합적인 협업 경험은 쿠팡의 <strong class="text-white">'물류센터 비대면 출입관리 시스템'</strong> 프로젝트였습니다. 제 API를
+                                        중심으로 외부 하드웨어 업체, 중국의 개인정보 담당팀과 동시에 협업해야 했습니다. 서로 다른 언어, 문화, 기술 도메인으로 인해 초기
+                                        커뮤니케이션에 어려움이 있었습니다.</p>
+                                    <p>저는 이 문제의 해법이 '소통의 필요성을 줄이는 완벽한 정의'에 있다고 판단했습니다. 언어와 문화의 장벽을 넘는 가장 확실한 방법은 '잘 정의된
+                                        코드와 데이터'라고 생각했기 때문입니다. 실제 요청/응답 JSON 예시와 코드 샘플까지 포함된 상세한 문서를 작성하여, 누가 보더라도
+                                        하나의 의미로만 해석될 수 있도록 만들었습니다.</p>
+                                    <p>결과적으로 물리적, 문화적 거리를 극복하고 프로젝트를 성공적으로 완수했습니다. 이 경험을 통해 복잡한 협업일수록, 오해의 여지가 없는 명확한 기술
+                                        문서가 가장 강력한 소통 도구가 된다는 사실을 배웠습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="glass-card rounded-lg">
+                            <button
+                                class="accordion-button w-full flex justify-between items-center p-6 text-lg font-semibold text-white">
+                                <span>장단점</span><i class="icon fas fa-chevron-down text-gray-400"></i>
+                            </button>
+                            <div class="accordion-content px-6">
+                                <div class="py-4 text-gray-300 leading-relaxed space-y-4 border-t border-gray-700/50">
+                                    <p><strong class="text-white">'소심하지만 꼼꼼하다'</strong>는 말이 저를 잘 표현하는 것 같습니다. 단점처럼 들릴 수
+                                        있는 '겁이 많고 소심한' 성격은, 개발자로서 '꼼꼼함'과 '책임감'이라는 가장 큰 장점이 되었습니다.</p>
+                                    <p>배포 전에는 발생 가능한 모든 시나리오를 점검하며 코드를 수없이 되짚어보고, 배포 이후에는 세심하게 로그를 살피며 작은 변화도 놓치지
+                                        않으려 합니다. 덕분에 서비스를 운영하며 큰 장애 없이 안정적으로 기여할 수 있었습니다.</p>
+                                    <p>작은 신호를 통해 잠재적 위험을 예측하고 선제적으로 대응하는 저의 꼼꼼함은, 안정성이 무엇보다 중요한 백엔드 시스템을 책임지는 데 가장 중요한
+                                        역량이라고 생각합니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="scroll-reveal text-center max-w-2xl mx-auto">
+                    <h2 class="text-4xl font-bold font-manrope gradient-text mb-4">연락을 기다립니다</h2>
+                    <p class="text-gray-300 mb-8">
+                        저의 다음 이야기를 함께 만들어갈 기회에 대해 이야기 나누고 싶습니다.
+                    </p>
+                    <a href="mailto:cheolhyeonpark90@gmail.com"
+                        class="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold text-xl py-4 px-8 rounded-lg transition-transform transform hover:scale-105">
+                        cheolhyeonpark90@gmail.com
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div id="modal-container">
+        <!-- AI Modal -->
+        <div id="modal-ai"
+            class="modal pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center opacity-0 z-50">
+            <div class="modal-overlay absolute w-full h-full bg-gray-900/80 backdrop-blur-sm"></div>
+            <div class="modal-container bg-[#101522] text-white w-11/12 md:max-w-4xl mx-auto rounded-lg shadow-lg z-50 overflow-y-auto border border-gray-700"
+                style="max-height: 90vh;">
+                <div class="modal-content py-6 text-left px-8">
+                    <div class="flex justify-between items-center pb-4 border-b border-gray-700">
+                        <p class="text-2xl font-bold">AI 디지털 교과서</p>
+                        <button class="modal-close cursor-pointer z-50 text-gray-400 hover:text-white"><i
+                                class="fas fa-times fa-lg"></i></button>
+                    </div>
+                    <div class="mt-6 space-y-6">
+                        <img src="./aidigitalbook.png" alt="AI 디지털 교과서 아키텍처 다이어그램"
+                            class="rounded-lg border border-gray-600 w-full">
+                        <div>
+                            <p class="text-gray-300 leading-relaxed">
+                                교육부의 AI 디지털 교과서 사업에 참여하며, 기존에 없던 새로운 교육 플랫폼을 처음부터 구축해야 하는 과제에 직면했습니다. 대규모 동시 접속과 지속적인 기능
+                                확장을 감당할 수 있는 유연하고 안정적인 아키텍처가 필요했습니다.<br><br>
+                                프로젝트 초기부터 합류하여 서비스 전체의 백엔드 아키텍처와 데이터베이스 스키마 설계를 주도했습니다. '교과학습',
+                                '학습관리' 등 핵심 도메인으로 서비스를 분리하여 확장성과 장애 격리 효과를 극대화했습니다. 또한, 읽기/쓰기 작업을 분리하는 CQRS 패턴, Kafka를
+                                이용한 비동기 처리, Redis 캐싱을 유기적으로 조합하여 대규모 트래픽 속에서도 안정적인 성능을 유지하도록 설계했습니다.<br><br>
+                                정부 정책 변경으로 서비스가 최종 출시되지는 못했지만, 제가 설계한 아키텍처와 기술 산출물의 완성도를 인정받아 후속 사업의 공식적인 PoC(Proof of
+                                Concept) 자료로 채택되었습니다. 이 경험을 통해, 아키텍처 설계란 단순히 기술을 나열하는 것이 아니라 비즈니스의 본질을 꿰뚫고 미래의 변화까지 예측하여
+                                최적의 균형점을 찾는 과정임을 깊이 체감할 수 있었습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- AutoEntry Modal -->
+        <div id="modal-autoentry"
+            class="modal pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center opacity-0 z-50">
+            <div class="modal-overlay absolute w-full h-full bg-gray-900/80 backdrop-blur-sm"></div>
+            <div class="modal-container bg-[#101522] text-white w-11/12 md:max-w-4xl mx-auto rounded-lg shadow-lg z-50 overflow-y-auto border border-gray-700"
+                style="max-height: 90vh;">
+                <div class="modal-content py-6 text-left px-8">
+                    <div class="flex justify-between items-center pb-4 border-b border-gray-700">
+                        <p class="text-2xl font-bold">물류센터 비대면 출입관리 시스템</p>
+                        <button class="modal-close cursor-pointer z-50 text-gray-400 hover:text-white"><i
+                                class="fas fa-times fa-lg"></i></button>
+                    </div>
+                    <div class="mt-6 space-y-6">
+                        <img src="./autoentry.png" alt="AutoEntry 시스템 플로우 다이어그램"
+                            class="rounded-lg border border-gray-600 w-full bg-white p-4">
+                        <div>
+                            <p class="text-gray-300 leading-relaxed">
+                                팬데믹 시기, 전국 물류센터에서 수작업으로 진행되던 수천 명의 출입자 관리 프로세스는 운영 비효율과 높은 인건비 문제를 야기했습니다. 이를 해결하기 위해 출입
+                                절차를 자동화하는 시스템의 핵심 백엔드 서버 개발을 책임졌습니다.<br><br>
+                                QR 코드 인증을 위한 REST API와 전국 1,000개 이상의 키오스크 원격 관리를 위한 API를 개발했습니다. 특히 출입구에서 발생할 대규모 동시 요청에
+                                대비해, 휘발성 출입 데이터를 Redis에 저장하고 TTL을 설정하여 응답 시간을 최적화했습니다. 또한, 하드웨어 제조사, 중국 현지 개발팀 등 다양한
+                                이해관계자와의 협업을 위해 언어 장벽을 넘어설 명확한 기술 문서가 필요했습니다. 명확한 JSON 데이터 구조 예시와 API 호출 시나리오를 포함한 상세 기술
+                                문서를 작성하여 원활한 소통과 안정적인 시스템 통합을 이끌었습니다.<br><br>
+                                그 결과, 연간 약 10억 원의 인건비를 절감하는 비즈니스 임팩트를 창출했으며, 이 성과를 인정받아 해당 분기 우수 성과자로 선정되었습니다. 이 경험을 통해
+                                복잡한 이해관계자와의 협업에서 명확한 기술 문서가 얼마나 강력한 소통 도구가 되는지 배울 수 있었습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Batch Improvement Modal -->
+        <div id="modal-batch"
+            class="modal pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center opacity-0 z-50">
+            <div class="modal-overlay absolute w-full h-full bg-gray-900/80 backdrop-blur-sm"></div>
+            <div class="modal-container bg-[#101522] text-white w-11/12 md:max-w-4xl mx-auto rounded-lg shadow-lg z-50 overflow-y-auto border border-gray-700"
+                style="max-height: 90vh;">
+                <div class="modal-content py-6 text-left px-8">
+                    <div class="flex justify-between items-center pb-4 border-b border-gray-700">
+                        <p class="text-2xl font-bold">약정 연장 배치 성능 개선</p>
+                        <button class="modal-close cursor-pointer z-50 text-gray-400 hover:text-white"><i
+                                class="fas fa-times fa-lg"></i></button>
+                    </div>
+                    <div class="mt-6 space-y-6">
+                        <div class="bg-gray-800/50 rounded-lg p-6 w-full">
+                            <svg class="w-full" viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg">
+                                <line x1="20" y1="130" x2="280" y2="130" stroke="#4A5568" />
+                                <text x="75" y="145" font-family="Inter" font-size="10" fill="#9CA3AF"
+                                    text-anchor="middle">Before</text>
+                                <text x="225" y="145" font-family="Inter" font-size="10" fill="#9CA3AF"
+                                    text-anchor="middle">After</text>
+                                <!-- Before Bar -->
+                                <rect x="50" y="10" width="50" height="120" fill="rgba(244, 114, 182, 0.4)" />
+                                <text x="75" y="30" font-family="Manrope" font-size="12" font-weight="bold"
+                                    fill="#F472B6" text-anchor="middle">45 min</text>
+                                <!-- After Bar -->
+                                <rect x="200" y="127" width="50" height="3" fill="rgba(52, 211, 153, 0.6)" />
+                                <text x="225" y="120" font-family="Manrope" font-size="12" font-weight="bold"
+                                    fill="#34D399" text-anchor="middle">
+                                    < 1 min</text>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-gray-300 leading-relaxed">
+                                프로젝트 종료 후 잠깐의 시간이 주어졌을 때, 늘 눈에 거슬렸던 문제를 해결하고 싶었습니다. 약정 연장 배치 프로세스는 처리량에 비해 비정상적으로 오랜 시간이
+                                소요되었고, 저는 그 원인을 파헤쳐 보기로 했습니다.<br><br>
+                                분석 결과, 문제는 데이터베이스 인덱스에 있었습니다. 자주 변경되는 컬럼에 인덱스가 걸려 있어 옵티마이저가 인덱스를 타지 못하고, 20개가 넘는 테이블을 모두
+                                풀스캔하는 것이 원인이었습니다. 처음에는 DB를 건드리지 않고 애플리케이션 단에서 해결하기 위해, 사용량이 없는 새벽 시간에 Fork/Join 프레임워크를
+                                이용한 병렬 처리로 접근했습니다. 처리 시간은 45분에서 10분대로 줄었지만, 근본적인 해결책이 아니라는 생각에 만족할 수 없었습니다.<br><br>
+                                더 깊이 파고든 끝에, 조회 패턴에 최적화된 복합 인덱스를 새로 설계하고 쿼리의 WHERE절을 수정하는 것이 정답임을 확신했습니다. 인덱스를 재설계하고 적용한
+                                결과, 배치 시간은 1분 미만으로 단축되었습니다. 이 경험은 화려한 기술을 적용하기에 앞서, 시스템의 가장 기본적인 원리를 깊이 이해하고 진단하는 것이 얼마나
+                                중요한지 깨닫게 된 계기가 되었습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Pad Integration Modal -->
+        <div id="modal-pad"
+            class="modal pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center opacity-0 z-50">
+            <div class="modal-overlay absolute w-full h-full bg-gray-900/80 backdrop-blur-sm"></div>
+            <div class="modal-container bg-[#101522] text-white w-11/12 md:max-w-4xl mx-auto rounded-lg shadow-lg z-50 overflow-y-auto border border-gray-700"
+                style="max-height: 90vh;">
+                <div class="modal-content py-6 text-left px-8">
+                    <div class="flex justify-between items-center pb-4 border-b border-gray-700">
+                        <p class="text-2xl font-bold">패드 통합 프로젝트</p>
+                        <button class="modal-close cursor-pointer z-50 text-gray-400 hover:text-white"><i
+                                class="fas fa-times fa-lg"></i></button>
+                    </div>
+                    <div class="mt-6 space-y-6">
+                        <div class="bg-gray-800/50 rounded-lg p-6 w-full">
+                            <svg class="w-full" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6"
+                                        markerHeight="6" orient="auto-start-reverse">
+                                        <path d="M 0 0 L 10 5 L 0 10 z" fill="#60A5FA" />
+                                    </marker>
+                                </defs>
+                                <g font-family="Inter" font-size="10" fill="#E5E7EB" text-anchor="middle">
+                                    <rect x="10" y="30" width="100" height="40" rx="5" fill="#4B5563" /><text x="60"
+                                        y="55">Oracle Procedure</text><text x="60" y="45" font-size="8"
+                                        fill="#FBBF24">(Legacy)</text>
+                                    <rect x="150" y="30" width="100" height="40" rx="5" fill="#3B82F6" /><text x="200"
+                                        y="55">Java Application</text><text x="200" y="45" font-size="8"
+                                        fill="#FBBF24">(New)</text>
+                                    <rect x="290" y="30" width="100" height="40" rx="5" fill="#34D399" /><text x="340"
+                                        y="55">Refactoring</text><text x="340" y="45" font-size="8"
+                                        fill="#FBBF24">(Result)</text>
+                                </g>
+                                <g fill="none" stroke="#60A5FA" stroke-width="1.5" marker-end="url(#arrow)">
+                                    <path d="M 110 50 Q 130 10, 150 50" />
+                                    <path d="M 150 50 Q 130 90, 110 50" />
+                                    <path d="M 250 50 L 290 50" />
+                                </g>
+                                <text x="130" y="110" font-family="Noto Sans KR" font-size="10" fill="#9CA3AF"
+                                    text-anchor="middle">점진적 리팩토링 및 동시 실행/결과 비교</text>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-gray-300 leading-relaxed">
+                                입사 초기, 저는 우리 회사가 학습용 앱을 스토어에 유통하는 것이 아니라, 앱을 설치한 실제 패드를 판매하는 방식이라는 사실을 알게 되었습니다. 이로 인해 한
+                                명의 고객이 여러 서비스를 계약하더라도 하나의 패드에서는 하나의 계약만 이용할 수 있었고, 이는 끊임없는 고객 불만(VOC)으로 이어졌습니다. <br><br>
+                                이 문제를 해결하기 위해, 패드 인가 로직을 수정하여 한 패드에서 여러 계약 서비스를 이용할 수 있도록 하는 프로젝트에 투입되었습니다. 가장 큰 난관은 하위
+                                호환성을 해치지 않으면서, 수천 줄에 달하는 Oracle Procedure로 작성된 핵심 로직을 애플리케이션 단으로 옮기는 것이었습니다. 가독성, 디버깅,
+                                유지보수성 모두를 위해 반드시 필요한 작업이었지만, 한 번에 옮기는 것은 리스크가 너무 컸습니다.<br><br>
+                                저는 '점진적 리팩토링' 전략을 택했습니다. 프로시저의 큰 분기문 단위로 로직을 애플리케이션으로 옮기고, 안정성을 담보하기 위해 기존 프로시저와 새로운
+                                애플리케이션 로직을 동시에 실행하여 결과를 비교하는 검증 로직을 추가했습니다. 오랜 시간이 걸렸지만, 이 꾸준하고 신중한 접근 덕분에 서비스 장애 없이 모든
+                                프로시저를 성공적으로 걷어낼 수 있었습니다. 이 프로젝트는 복잡한 레거시 시스템을 상대할 때, 인내심을 갖고 점진적으로 개선해나가는 것의 가치를
+                                가르쳐주었습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Delivery Tip Modal (이미지 교체) -->
+        <div id="modal-delivery"
+            class="modal pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center opacity-0 z-50">
+            <div class="modal-overlay absolute w-full h-full bg-gray-900/80 backdrop-blur-sm"></div>
+            <div class="modal-container bg-[#101522] text-white w-11/12 md:max-w-4xl mx-auto rounded-lg shadow-lg z-50 overflow-y-auto border border-gray-700"
+                style="max-height: 90vh;">
+                <div class="modal-content py-6 text-left px-8">
+                    <div class="flex justify-between items-center pb-4 border-b border-gray-700">
+                        <p class="text-2xl font-bold">배송팁 기능 개발</p>
+                        <button class="modal-close cursor-pointer z-50 text-gray-400 hover:text-white"><i
+                                class="fas fa-times fa-lg"></i></button>
+                    </div>
+                    <div class="mt-6 space-y-6">
+                        <div class="bg-gray-800/50 rounded-lg p-6 w-full flex justify-around items-center text-center">
+                            <div class="flex flex-col items-center gap-2">
+                                <i class="fas fa-map-marked-alt fa-2x text-rose-400"></i>
+                                <span class="text-sm text-gray-300">오배송 문제</span>
+                            </div>
+                            <i class="fas fa-arrow-right fa-lg text-gray-500 mx-4"></i>
+                            <div class="flex flex-col items-center gap-2">
+                                <i class="fas fa-lightbulb fa-2x text-yellow-400"></i>
+                                <span class="text-sm text-gray-300">배송팁 공유</span>
+                            </div>
+                            <i class="fas fa-arrow-right fa-lg text-gray-500 mx-4"></i>
+                            <div class="flex flex-col items-center gap-2">
+                                <i class="fas fa-chart-line fa-2x text-emerald-400"></i>
+                                <span class="text-sm text-gray-300">품질/효율 개선</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-gray-300 leading-relaxed">
+                                오배송은 고객과 배송 담당자 모두에게 큰 스트레스를 주는 문제입니다. 이 문제를 해결하기 위해, 수많은 배송 담당자들이 각자 터득한 '주소지별 배송 노하우'를
+                                공유할 수 있는 플랫폼에 대한 요구사항이 제기되었습니다. "101호는 정문이 아니라 골목길 뒤로", "00번지는 파란 대문집"과 같은 살아있는 정보가 오배송을
+                                줄일 수 있는 열쇠였습니다.<br><br>
+                                저는 이 '배송팁' 서비스의 핵심 API 설계를 맡았습니다. 주소지별로 배송팁을 작성, 조회하고, 팁의 유용성을 평가할 수 있도록 '좋아요/싫어요' 기능을
+                                포함한 RESTful API를 구현했습니다.<br><br>
+                                서비스 배포 후, 시범 지역의 오배송률이 0%로 떨어지는 놀라운 결과를 확인할 수 있었습니다. 무엇보다 현장의 배송 담당자분들로부터 "만들어줘서 고맙다"는
+                                인사를 직접 받았을 때, 개발자로서 가장 큰 보람을 느꼈습니다. 내가 만든 코드가 누군가의 하루를 더 나은 방향으로 바꾸고, 실질적인 가치를 만들어내는 순간의
+                                뿌듯함은 지금도 저를 움직이는 가장 큰 동력입니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- PII Logging Modal -->
+        <div id="modal-pii"
+            class="modal pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center opacity-0 z-50">
+            <div class="modal-overlay absolute w-full h-full bg-gray-900/80 backdrop-blur-sm"></div>
+            <div class="modal-container bg-[#101522] text-white w-11/12 md:max-w-4xl mx-auto rounded-lg shadow-lg z-50 overflow-y-auto border border-gray-700"
+                style="max-height: 90vh;">
+                <div class="modal-content py-6 text-left px-8">
+                    <div class="flex justify-between items-center pb-4 border-b border-gray-700">
+                        <p class="text-2xl font-bold">개인정보 접근 관리자 로깅</p>
+                        <button class="modal-close cursor-pointer z-50 text-gray-400 hover:text-white"><i
+                                class="fas fa-times fa-lg"></i></button>
+                    </div>
+                    <div class="mt-6 space-y-6">
+                        <div class="bg-gray-800/50 rounded-lg p-6 w-full">
+                            <svg class="w-full" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+                                <g text-anchor="middle" font-family="Inter" font-size="10">
+                                    <text x="75" y="20" fill="#E5E7EB">동기 방식 (Before)</text>
+                                    <rect x="25" y="30" width="100" height="40" rx="5" fill="#4B5563" /><text x="75"
+                                        y="55" fill="white">Service A</text>
+                                    <rect x="25" y="90" width="100" height="40" rx="5" fill="#DC2626" /><text x="75"
+                                        y="115" fill="white">Logging Server (Fail)</text>
+                                    <path d="M 75 70 V 90" stroke="#F87171" stroke-width="2" marker-end="url(#arrow)" />
+                                    <path d="M 85 90 V 70" stroke="#F87171" stroke-width="2" stroke-dasharray="4" />
+                                    <text x="110" y="85" fill="#F87171" text-anchor="start" font-size="9">Block &
+                                        Fail</text>
+
+                                    <text x="325" y="20" fill="#E5E7EB">비동기 방식 (After)</text>
+                                    <rect x="275" y="30" width="100" height="40" rx="5" fill="#4B5563" /><text x="325"
+                                        y="55" fill="white">Service A</text>
+                                    <rect x="225" y="90" width="100" height="40" rx="5" fill="#4B5563" /><text x="275"
+                                        y="115" fill="white">Message Queue</text>
+                                    <rect x="350" y="90" width="50" height="40" rx="5" fill="#DC2626" /><text x="375"
+                                        y="115" fill="white">Log</text>
+                                    <path d="M 310 70 L 290 90" stroke="#34D399" stroke-width="2"
+                                        marker-end="url(#arrow)" />
+                                    <path d="M 325 105 L 350 105" stroke="#9CA3AF" stroke-width="2"
+                                        marker-end="url(#arrow)" />
+                                    <text x="320" y="80" fill="#34D399" text-anchor="start"
+                                        font-size="9">Non-blocking</text>
+                                </g>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-gray-300 leading-relaxed">
+                                개인정보보호 강화 요구사항에 따라, 민감 정보에 접근하는 모든 기록을 로깅 서버에 남기는 모듈 개발을 맡았습니다. 모든 API와 서비스 로직에 로깅 코드를
+                                분산시키는 대신, 저는 Spring AOP를 활용해 Annotation만 추가하면 자동으로 로그가 전송되는 공통 모듈을 구현했습니다. Reflection으로
+                                메서드 파라미터까지 추출해 상세한 로그를 남기도록 설계했습니다.<br><br>
+                                그런데 배포 후, 로깅 서버에 장애가 발생하자 개인정보와 관련 없는 서비스까지 모두 마비되는 문제가 발생했습니다. 원인은 로깅 서버에
+                                동기(Synchronous) 방식으로 로그를 전송했기 때문이었습니다. 로깅 서버의 응답을 기다리느라 전체 서비스가 블로킹된 것입니다.<br><br>
+                                즉시 비동기 방식으로 전환하여 로깅 시스템의 장애가 전체 서비스에 영향을 미치지 않도록 격리 조치했습니다. 이 경험은 하나의 작은 설계 실수가 어떻게 전체
+                                시스템의 안정성을 무너뜨릴 수 있는지 보여준 값비싼 교훈이었습니다. 이후 모든 시스템을 설계할 때, 각 컴포넌트 간의 결합도를 낮추고 장애 전파를 막는 것을
+                                핵심 원칙으로 삼게 되었습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Book Search Modal -->
+        <div id="modal-book"
+            class="modal pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center opacity-0 z-50">
+            <div class="modal-overlay absolute w-full h-full bg-gray-900/80 backdrop-blur-sm"></div>
+            <div class="modal-container bg-[#101522] text-white w-11/12 md:max-w-4xl mx-auto rounded-lg shadow-lg z-50 overflow-y-auto border border-gray-700"
+                style="max-height: 90vh;">
+                <div class="modal-content py-6 text-left px-8">
+                    <div class="flex justify-between items-center pb-4 border-b border-gray-700">
+                        <p class="text-2xl font-bold">사내 도서 검색 서비스 개발</p>
+                        <button class="modal-close cursor-pointer z-50 text-gray-400 hover:text-white"><i
+                                class="fas fa-times fa-lg"></i></button>
+                    </div>
+                    <div class="mt-6 space-y-6">
+                        <div class="bg-gray-800/50 rounded-lg p-6 w-full">
+                            <svg class="w-full" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+                                <g text-anchor="middle" font-family="Inter" font-size="10" fill="#E5E7EB">
+                                    <rect x="10" y="30" width="80" height="40" rx="5" fill="#4B5563" /><text x="50"
+                                        y="55">User</text>
+                                    <rect x="120" y="30" width="80" height="40" rx="5" fill="#4B5563" /><text x="160"
+                                        y="55">API Server</text>
+                                    <rect x="230" y="30" width="80" height="40" rx="5" fill="#4B5563" /><text x="270"
+                                        y="55">Elasticsearch</text>
+                                    <rect x="340" y="30" width="50" height="40" rx="5" fill="#4B5563" /><text x="365"
+                                        y="55">DB</text>
+                                </g>
+                                <g fill="none" stroke="#60A5FA" stroke-width="1.5" marker-end="url(#arrow)">
+                                    <path d="M90 50 h 30" />
+                                    <path d="M200 50 h 30" />
+                                    <path d="M310 50 h 30" />
+                                </g>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-gray-300 leading-relaxed">
+                                인턴십 최종 평가 과제는 팀을 이루어 사내 도서 검색 서비스를 개발하는 것이었습니다. 팀의 연장자였던 저는 자연스럽게 팀장 역할을 맡게 되었습니다. 의욕
+                                넘치는 동료들은 저마다 사용하고 싶은 기술과 구현하고 싶은 기능에 대한 아이디어가 많았습니다.<br><br>
+                                저의 주된 역할은 기술적인 구현뿐만 아니라, 넘치는 아이디어들 사이에서 현실적인 트레이드오프를 고려하여 팀원들의 의견을 조율하고 한정된 시간 안에 프로젝트를
+                                완수할 수 있도록 일정을 관리하는 것이었습니다. Elasticsearch를 활용한 검색 API 개발과 서버 구축을 담당하면서, 동시에 프로젝트의 방향이
+                                흩어지지 않도록 중심을 잡았습니다.<br><br>
+                                성공적으로 프로젝트를 완수하여 정규직 전환 평가에 합격할 수 있었습니다. 이 프로젝트는 제게 첫 팀 리딩 경험이었습니다. 기술적 성취만큼이나 중요한 것이
+                                명확한 소통, 현실적인 목표 설정, 그리고 팀원 간의 신뢰라는 것을 배울 수 있었던 소중한 시간이었습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- KEVOTE Modal -->
+        <div id="modal-kevote"
+            class="modal pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center opacity-0 z-50">
+            <div class="modal-overlay absolute w-full h-full bg-gray-900/80 backdrop-blur-sm"></div>
+            <div class="modal-container bg-[#101522] text-white w-11/12 md:max-w-4xl mx-auto rounded-lg shadow-lg z-50 overflow-y-auto border border-gray-700"
+                style="max-height: 90vh;">
+                <div class="modal-content py-6 text-left px-8">
+                    <div class="flex justify-between items-center pb-4 border-b border-gray-700">
+                        <p class="text-2xl font-bold">전자투표 서비스 개발 및 리팩토링</p>
+                        <button class="modal-close cursor-pointer z-50 text-gray-400 hover:text-white"><i
+                                class="fas fa-times fa-lg"></i></button>
+                    </div>
+                    <div class="mt-6 space-y-6">
+                        <div>
+                            <p class="text-gray-300 leading-relaxed">
+                                주니어 시절, 아파트e투표 프로젝트를 유지보수하며 처음으로 '기술 부채'의 무게를 실감했습니다. 촉박한 일정 속에서 만들어진 코드는 복잡성과 가독성이 크게
+                                떨어졌습니다. 직관적이지 않은 변수명, 여러 곳에 중복 구현된 기능들로 인해 작은 수정 하나에도 코드 전체를 샅샅이 훑어야 했습니다.<br><br>
+                                저는 새로운 기능을 추가하기에 앞서, 기존 코드를 분석하고 구조를 개선하는 것부터 시작했습니다. 하나의 클래스가 너무 많은 책임을 지고 있는 구조를 기능별로
+                                분리하고, 불필요한 중복을 제거하며, 모호했던 변수와 함수명을 명확하게 바꾸는 작업을 꾸준히 진행했습니다. 또한, 부족했던 문서를 보완하고 주석을 정리하여
+                                새로운 동료가 빠르게 시스템을 이해하고 기여할 수 있는 기반을 마련했습니다.<br><br>
+                                이 프로젝트는 제게 '단순히 동작하는 코드'를 넘어 '이해하기 쉽고 유지보수하기 좋은 코드'의 중요성을 온몸으로 깨닫게 해주었습니다. 잘 설계된 코드가
+                                동료와의 신뢰를 쌓고, 장기적으로 팀의 생산성을 얼마나 높일 수 있는지 배울 수 있었던 값진 경험입니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vibe Coding Modal (이미지 교체) -->
+        <div id="modal-vibe-coding"
+            class="modal pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center opacity-0 z-50">
+            <div class="modal-overlay absolute w-full h-full bg-gray-900/80 backdrop-blur-sm"></div>
+            <div class="modal-container bg-[#101522] text-white w-11/12 md:max-w-4xl mx-auto rounded-lg shadow-lg z-50 overflow-y-auto border border-gray-700"
+                style="max-height: 90vh;">
+                <div class="modal-content py-6 text-left px-8">
+                    <div class="flex justify-between items-center pb-4 border-b border-gray-700">
+                        <p class="text-2xl font-bold">AI와 함께한 사이드 프로젝트: Vibe Coding</p>
+                        <button class="modal-close cursor-pointer z-50 text-gray-400 hover:text-white"><i
+                                class="fas fa-times fa-lg"></i></button>
+                    </div>
+                    <div class="mt-6 space-y-6">
+                        <div class="bg-gray-800/50 rounded-lg p-6 w-full flex justify-around items-center text-center">
+                            <div class="flex flex-col items-center gap-2">
+                                <i class="fas fa-brain fa-2x text-purple-400"></i>
+                                <span class="text-sm text-gray-300">1. 아이디어</span>
+                            </div>
+                            <i class="fas fa-arrow-right fa-lg text-gray-500 mx-2"></i>
+                            <div class="flex flex-col items-center gap-2">
+                                <i class="fas fa-comments fa-2x text-sky-400"></i>
+                                <span class="text-sm text-gray-300">2. 프롬프트 엔지니어링</span>
+                            </div>
+                            <i class="fas fa-arrow-right fa-lg text-gray-500 mx-2"></i>
+                            <div class="flex flex-col items-center gap-2">
+                                <i class="fas fa-robot fa-2x text-yellow-400"></i>
+                                <span class="text-sm text-gray-300">3. AI (기획/디자인/코딩)</span>
+                            </div>
+                            <i class="fas fa-arrow-right fa-lg text-gray-500 mx-2"></i>
+                            <div class="flex flex-col items-center gap-2">
+                                <i class="fas fa-rocket fa-2x text-emerald-400"></i>
+                                <span class="text-sm text-gray-300">4. 신속한 프로토타이핑</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-gray-300 leading-relaxed">
+                                AI가 산업 전반에 스며드는 것을 보며, 개발자로서 이 새로운 도구를 어떻게 활용해야 할지 직접 부딪혀보기로 했습니다. 저는 AI를 단순한 코드 생성기가
+                                아닌, 기획자, 디자이너, 개발자로 구성된 가상의 팀으로 상상했습니다. 명확한 목표와 제약을 담은 프롬프트를 통해 아이디어를 제안받고, 디자인 시안을 만들게
+                                하고, 최종적으로 코드를 작성하도록 지시하며 5~6시간 만에 하나의 웹 서비스를 완성하는 과정을 반복했습니다. 그 결과 <a
+                                    href="https://aipersonalcolor.pages.dev/" target="_blank"
+                                    class="text-blue-400 hover:underline">'AI 퍼스널 컬러 진단기'</a>, <a
+                                    href="https://freeculture.xyz/" target="_blank"
+                                    class="text-blue-400 hover:underline">'무료한 문화생활'</a> 등 10개 이상의 작은 서비스들이
+                                탄생했습니다.<br><br>
+                                이 과정은 제게 양가적인 감정을 안겨주었습니다. 때로는 능력 좋은 팀원들을 지휘하는 팀장이 된 듯한 강력한 생산성을 경험했지만, 다른 한편으로는 AI가
+                                제안하는 방식을 비판 없이 수행하는 부하 직원이 된 듯한 기분도 느꼈습니다.<br><br>
+                                이 사이드 프로젝트는 제게 AI가 가져올 변화에 대한 막연한 두려움을, '어떻게 협업하고 주도권을 가져갈 것인가'에 대한 구체적인 고민으로 바꾸어 주었습니다.
+                                기술의 발전을 수동적으로 따르는 것이 아니라, 적극적으로 활용하며 더 큰 가치를 만드는 개발자가 되기 위한 중요한 성찰의 계기였습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-gray-900/50">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <p>© 2025 박철현. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile menu toggle
+            document.getElementById('menu-btn').addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
+            });
+
+            // Scroll reveal animation
+            const scrollElements = document.querySelectorAll('.scroll-reveal');
+            const elementInView = (el, dividend = 1) => {
+                const elementTop = el.getBoundingClientRect().top;
+                return (elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend);
+            };
+            const displayScrollElement = (element) => element.classList.add('visible');
+            const handleScrollAnimation = () => {
+                scrollElements.forEach((el) => { if (elementInView(el, 1.25)) displayScrollElement(el) });
+            };
+            window.addEventListener('scroll', handleScrollAnimation);
+            handleScrollAnimation();
+
+            // Accordion for Stories
+            document.querySelectorAll('.accordion-button').forEach(button => {
+                button.addEventListener('click', () => {
+                    const currentlyActive = document.querySelector('.accordion-button.active');
+                    if (currentlyActive && currentlyActive !== button) {
+                        currentlyActive.classList.remove('active');
+                    }
+                    button.classList.toggle('active');
+                });
+            });
+
+            // Modal logic
+            const modalContainer = document.getElementById('modal-container');
+            document.querySelectorAll('.modal-trigger').forEach(trigger => {
+                trigger.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const modalId = trigger.dataset.modal;
+                    const modal = document.getElementById(modalId);
+                    if (modal) {
+                        modal.classList.remove('pointer-events-none', 'opacity-0');
+                        document.body.classList.add('modal-active');
+                    }
+                });
+            });
+
+            modalContainer.addEventListener('click', e => {
+                if (e.target.closest('.modal-close') || e.target.classList.contains('modal-overlay')) {
+                    const modal = e.target.closest('.modal');
+                    if (modal) {
+                        modal.classList.add('pointer-events-none', 'opacity-0');
+                        document.body.classList.remove('modal-active');
+                    }
+                }
+            });
+
+            document.addEventListener('keydown', e => {
+                if (e.key === "Escape") {
+                    document.querySelectorAll('.modal').forEach(modal => {
+                        modal.classList.add('pointer-events-none', 'opacity-0');
+                    });
+                    document.body.classList.remove('modal-active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
